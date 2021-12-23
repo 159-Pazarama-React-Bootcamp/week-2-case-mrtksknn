@@ -1,11 +1,15 @@
 import React from 'react'
 import AddTodoForm from './components/AddTodoForm'
+import TodoList from './components/TodoList'
+import TotalCompleteItems from './components/TodoCompleteItems'
 
 const App = () => {
-  // main function
   return (
-    <div className="position-absolute top-50 start-50 translate-middle">
+    <div className="container bg-white p-4 mt-5">
+      <h1>My Todo List</h1>
       <AddTodoForm />
+      <TodoList />
+      <TotalCompleteItems />
     </div>
   )
 }
