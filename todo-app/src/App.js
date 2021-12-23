@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import TodoItem from './TodoItem/TodoItem'
 
 const App = () => {
-  const [todosData, setTodosData] = useState({})
+  const [todosData, setTodosData] = useState()
 
+  // sendign request to mockapi with axios
   useEffect(() => {
     const getData = async () => {
       await axios
         .get('https://61c42343f1af4a0017d99378.mockapi.io/todos')
         .then((res) => {
-          const { data } = res
-          const newTdoosData = {}
-          data.forEach((todos, index) => {
-            newTdoosData[index + 1] = {
-              id: index + 1,
-              isCompleted: todos.isCompleted,
-              content: todos.content,
-            }
-          })
-          setTodosData(newTdoosData)
+          setTimeout(() => {
+            // setting delay to getting data
+            const { data } = res
+            const newTdoosData = {}
+            data.forEach((todos, index) => {
+              newTdoosData[index + 1] = {
+                id: index + 1,
+                isCompleted: todos.isCompleted,
+                content: todos.content,
+              }
+            })
+            setTodosData(newTdoosData)
+          }, 3000)
         })
         .catch((err) => {
           console.log(err)
@@ -27,23 +32,21 @@ const App = () => {
     getData()
   }, [])
 
-  const getTodos = (todoId) => {
-    const { content } = todosData[todoId]
-
-    return (
-      <div key={todoId}>
-        <li>{content}</li>
-      </div>
-    )
-  }
-
+  // main function
   return (
     <>
       <div>
         {todosData ? (
-          <div>{Object.keys(todosData).map((todoId) => getTodos(todoId))}</div>
+          <div>
+            {Object.keys(todosData).map((todoId) => (
+              <TodoItem key={todoId} todoId={todoId} todosData={todosData} />
+            ))}
+          </div>
         ) : (
-          <h2>Loading...</h2>
+          // Bonus 1 showing user a spinner when getting todo datas
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         )}
       </div>
     </>
