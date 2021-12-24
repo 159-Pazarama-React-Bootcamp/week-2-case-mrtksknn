@@ -29,12 +29,6 @@ const AddNewItem = () => {
         value={value}
         onChange={(event) => setValue(event.target.value)}
       />
-      <button
-        type="submit"
-        className="btn btn-primary mb-2 rounded-0 rounded-end"
-      >
-        Submit
-      </button>
     </form>
   )
 }
