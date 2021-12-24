@@ -30,6 +30,7 @@ const App = () => {
             <label>
               <input
                 name="user"
+                style={{ width: '130px' }}
                 className="form-control mr-sm-2"
                 placeholder="Who are you?"
                 onChange={handleChange}
