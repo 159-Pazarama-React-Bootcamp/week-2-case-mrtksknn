@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTodo } from '../redux/todoSlice'
+import { addTodo, addTodoAsync } from '../redux/todoSlice'
 
 const AddNewItem = () => {
   const [value, setValue] = useState('')
@@ -10,7 +10,7 @@ const AddNewItem = () => {
   const onSubmit = (event) => {
     event.preventDefault()
     dispatch(
-      addTodo({
+      addTodoAsync({
         content: value,
       })
     )
