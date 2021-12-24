@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteTodo, toggleCompleteAsync } from '../redux/todoSlice'
+import { deleteTodoAsync, toggleCompleteAsync } from '../redux/todoSlice'
 
 const ListItem = ({ id, title, completed }) => {
   const dispatch = useDispatch()
@@ -10,7 +10,7 @@ const ListItem = ({ id, title, completed }) => {
   }
 
   const handleDeleteClick = () => {
-    dispatch(deleteTodo({ id: id }))
+    dispatch(deleteTodoAsync({ id: id }))
   }
 
   return (
