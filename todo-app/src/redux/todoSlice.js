@@ -53,6 +53,26 @@ export const toggleCompleteAsync = createAsyncThunk(
   }
 )
 
+export const updateTodoAsync = createAsyncThunk(
+  'todos/updateTodoAsync',
+  async (payload) => {
+    const response = await fetch(
+      `https://61c42343f1af4a0017d99378.mockapi.io/todos/${payload.id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ content: payload.content }),
+      }
+    )
+    if (response.ok) {
+      const todo = await response.json()
+      return { id: todo.id, content: todo.content }
+    }
+  }
+)
+
 export const deleteTodoAsync = createAsyncThunk(
   'todos/deleteTodoAsync',
   async (payload) => {
@@ -99,6 +119,10 @@ const todoSlice = createSlice({
     [toggleCompleteAsync.fulfilled]: (state, action) => {
       const index = state.findIndex((todo) => todo.id === action.payload.id)
       state[index].isCompleted = action.payload.isCompleted
+    },
+    [updateTodoAsync.fulfilled]: (state, action) => {
+      const index = state.findIndex((todo) => todo.id === action.payload.id)
+      state[index].content = action.payload.content
     },
     [deleteTodoAsync.fulfilled]: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload.id)
