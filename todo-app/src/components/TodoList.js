@@ -8,20 +8,30 @@ const TodoList = () => {
   const todos = useSelector((state) => state.todos) // getting data from redux getTodosAsync
 
   useEffect(() => {
-    dispatch(getTodosAsync())
+    setTimeout(() => {
+      dispatch(getTodosAsync())
+    }, 5000)
   }, [dispatch]) // watch the dispatch action for rendering
 
   return (
     <ul className="list-group">
-      {todos.map((todo) => (
-        // display all items
-        <ListItem
-          key={todo.id}
-          id={todo.id}
-          title={todo.content}
-          completed={todo.isCompleted}
-        />
-      ))}
+      {todos.length !== 0 ? ( // controlling todos list length to show spinner or not
+        todos.map((todo) => (
+          // display all items
+          <ListItem
+            key={todo.id}
+            id={todo.id}
+            title={todo.content}
+            completed={todo.isCompleted}
+          />
+        ))
+      ) : (
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
     </ul>
   )
 }
