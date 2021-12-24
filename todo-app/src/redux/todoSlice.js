@@ -4,7 +4,7 @@ const todoSlice = createSlice({
   name: 'todos',
   initialState: [
     { id: 1, isCompleted: false, content: 'todo 1' },
-    { id: 2, isCompleted: false, content: 'todo 2' },
+    { id: 2, isCompleted: true, content: 'todo 2' },
   ],
 
   reducers: {
@@ -16,9 +16,13 @@ const todoSlice = createSlice({
       }
       state.push(newTodo)
     },
+    toggleComplete: (state, action) => {
+      const index = state.findIndex((todo) => todo.id === action.payload.id)
+      state[index].isCompleted = action.payload.isCompleted
+    },
   },
 })
 
-export const { addTodo } = todoSlice.actions
+export const { addTodo, toggleComplete } = todoSlice.actions
 
 export default todoSlice.reducer
