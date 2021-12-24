@@ -3,17 +3,19 @@ import AddTodoForm from './components/AddNewItem'
 import TodoList from './components/TodoList'
 
 const App = () => {
-  const [user, setUser] = useState(localStorage.getItem('user'))
+  const [user, setUser] = useState(localStorage.getItem('user')) // to create storage for user name
   const [input, setInput] = useState('')
 
   const handleChange = (event) => {
+    // controlling input situation
     const input = event.target.value
     setInput(input)
   }
 
   const handleFormSubmit = (event) => {
+    // get value of form
     event.preventDefault()
-    localStorage.setItem('user', input)
+    localStorage.setItem('user', input) // set user name value to localstorage
     setUser(input)
   }
 
@@ -26,6 +28,7 @@ const App = () => {
         {user ? (
           ''
         ) : (
+          // if user data is empty show form to get user name
           <form
             onSubmit={handleFormSubmit}
             className="form-inline mt-3 mb-3 d-flex"
@@ -36,7 +39,7 @@ const App = () => {
                 style={{ width: '130px' }}
                 className="form-control mr-sm-2"
                 placeholder="Who are you?"
-                onChange={handleChange}
+                onChange={handleChange} // control input change
               />
             </label>
           </form>

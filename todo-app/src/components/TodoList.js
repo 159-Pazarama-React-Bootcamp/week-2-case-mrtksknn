@@ -5,15 +5,16 @@ import { getTodosAsync } from '../redux/todoSlice'
 
 const TodoList = () => {
   const dispatch = useDispatch()
-  const todos = useSelector((state) => state.todos)
+  const todos = useSelector((state) => state.todos) // getting data from redux getTodosAsync
 
   useEffect(() => {
     dispatch(getTodosAsync())
-  }, [dispatch])
+  }, [dispatch]) // watch the dispatch action for rendering
 
   return (
     <ul className="list-group">
       {todos.map((todo) => (
+        // display all items
         <ListItem
           key={todo.id}
           id={todo.id}
