@@ -17,9 +17,16 @@ const ListItem = ({ id, title, completed }) => {
     <li
       key={id}
       className={`list-group-item ${completed && 'list-group-item-success'}`}
+      style={{
+        padding: '10px',
+        marginBottom: '10px',
+        border: 'none',
+        color: '#8D4040',
+        fontSize: '22px',
+      }}
     >
       <div className="d-flex justify-content-between">
-        <span className="d-flex align-items-center">
+        <span className="align-items-center">
           <input
             type="checkbox"
             className="mr-3"

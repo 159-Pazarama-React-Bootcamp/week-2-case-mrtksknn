@@ -18,7 +18,10 @@ const App = () => {
   }
 
   return (
-    <div className="container bg-white p-4 mt-5">
+    <div
+      className="container bg-white p-4 mt-5"
+      style={{ maxWidth: '500px', borderRadius: '24px' }}
+    >
       <h1 className="d-flex align-items-center justify-content-flex-start">
         {user ? (
           ''
