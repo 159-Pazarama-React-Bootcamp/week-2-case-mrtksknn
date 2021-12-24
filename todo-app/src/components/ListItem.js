@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import './ListItem.css'
 import { deleteTodoAsync, toggleCompleteAsync } from '../redux/todoSlice'
 
 const ListItem = ({ id, title, completed }) => {
@@ -26,10 +27,10 @@ const ListItem = ({ id, title, completed }) => {
       }}
     >
       <div className="d-flex justify-content-between">
-        <span className="align-items-center">
+        <span className=" d-flex align-items-center">
           <input
             type="checkbox"
-            className="mr-3"
+            style={{ marginRight: '20px' }}
             checked={completed}
             onChange={handleCompleteClick}
           />
