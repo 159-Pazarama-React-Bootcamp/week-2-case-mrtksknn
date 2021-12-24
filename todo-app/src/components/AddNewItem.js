@@ -9,11 +9,14 @@ const AddNewItem = () => {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    dispatch(
-      addTodoAsync({
-        content: value,
-      })
-    )
+    // controlling the input is empty or its length short than 3
+    if (value.length !== 0 && value.length >= 3) {
+      dispatch(
+        addTodoAsync({
+          content: value,
+        })
+      )
+    }
   }
 
   return (
